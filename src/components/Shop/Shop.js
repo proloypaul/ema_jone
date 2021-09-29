@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { addToDb } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css';
@@ -19,6 +20,8 @@ const Shop = () => {
         // console.log(product)
         const newOrder = [...orderItem, product]
         setOrderItem(newOrder)
+        // save to localStorage (for now)
+        addToDb(product.key)
         // setOrderItem(orderItem + 1);
         // console.log("done ")
 
