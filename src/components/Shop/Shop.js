@@ -36,8 +36,15 @@ const Shop = () => {
                 // console.log(key)
                 // display localStorage cart to the UI 
                 const collectEqualDataproduct  = products.find(product => product.key === key)
-                // console.log(key, collectEqualDataproduct) 
-                storageCart.push(collectEqualDataproduct);
+                // console.log(key, collectEqualDataproduct)
+                if(collectEqualDataproduct){
+                    const quantity = saveData[key] // get quantity value
+                    // console.log(key, quantity)
+                    collectEqualDataproduct.quantity = quantity // set quantity in collectEqualDataproduct object
+                    storageCart.push(collectEqualDataproduct)
+
+                }; 
+                // console.log(collectEqualDataproduct);
             };
         }
         setOrderItem(storageCart);
