@@ -5,14 +5,14 @@ const Cart = (props) => {
     // console.log(props.cart)
     // console.log(props.orders)
     const {cart} = props
-    let totalPrice = cart.reduce((previous, product) => previous + product.price, 0);
+    let totalPrice = parseFloat(cart.reduce((previous, product) => previous + product.price, 0).toFixed(2));
     
     // let totalPrice = 0;
     // for(let productPrice of cart){
     //     totalPrice = totalPrice + productPrice.price
     // };
     const tax = parseFloat((totalPrice * 0.2).toFixed(2));
-    const grandTotal = parseFloat(totalPrice + tax);
+    const grandTotal = parseFloat(totalPrice + tax).toFixed(2);
 
     return (
         <div>
