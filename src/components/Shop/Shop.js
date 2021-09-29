@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb } from '../../utilities/fakedb';
+import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css';
@@ -26,6 +26,23 @@ const Shop = () => {
         // console.log("done ")
 
     };
+
+    useEffect(() =>{
+        const saveData = getStoredCart()
+        // console.log(saveData)
+        let storageCart = [];
+        if(products.length){    // if products.length 0 hy tbe false products.length 1 hy tbe true
+            for(let key in saveData){
+                // console.log(key)
+                // display localStorage cart to the UI 
+                const collectEqualDataproduct  = products.find(product => product.key === key)
+                // console.log(key, collectEqualDataproduct) 
+                storageCart.push(collectEqualDataproduct);
+            };
+        }
+        setOrderItem(storageCart);
+
+    },[products])
 
     return (
         <div className="shop-container">
