@@ -12,7 +12,7 @@ const Header = () => {
                 <div>
                     <a href="/shop">Shop</a>
                     <a href="/order">Order Review</a>
-                    <a href="/inventory">Inventory</a>
+                    <a href="/inventory">Manage Inventory</a>
                 </div>
                 <div className="searchBox">
                     <input type="text"/>
