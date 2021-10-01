@@ -20,7 +20,7 @@ const useCart = products => {
             setCart(storageCart)
         }
     }, [products])
-    return [cart]
+    return [cart, setCart]
 }
 
 export default useCart
