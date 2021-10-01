@@ -11,8 +11,8 @@ const Header = () => {
             <nav>
                 <div>
                     <a href="/shop">Shop</a>
-                    <a href="/order">Order</a>
-                    <a href="/quality">Quality</a>
+                    <a href="/order">Order Review</a>
+                    <a href="/inventory">Inventory</a>
                 </div>
                 <div className="searchBox">
                     <input type="text"/>
