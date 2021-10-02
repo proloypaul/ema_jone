@@ -28,7 +28,9 @@ const OrderReview = () => {
                 </div>
                 <div className="cart">
                     <h2>available Products: {products.length}</h2>
-                    <Cart cart={cart}></Cart>
+                    <Cart cart={cart}>
+                        <button className="addToCartBtn">Place Order</button>
+                    </Cart>
                 </div>
             </div>
         </div>
