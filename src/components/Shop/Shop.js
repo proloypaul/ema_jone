@@ -1,3 +1,4 @@
+import { faFireExtinguisher } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
@@ -17,16 +18,9 @@ const Shop = () => {
 
     const [orderItem, setOrderItem] = useState([])
 
-    const handleOrderItem = (product) => {
-        // console.log(product)
-        const newOrder = [...orderItem, product]
-        setOrderItem(newOrder)
-        // save to localStorage (for now)
-        addToDb(product.key)
-        // setOrderItem(orderItem + 1);
-        // console.log("done ")
 
-    };
+
+    
 
     useEffect(() =>{
         const saveData = getStoredCart()
@@ -51,6 +45,27 @@ const Shop = () => {
         setOrderItem(storageCart);
 
     },[products])
+
+    const handleOrderItem = (product) => {
+        // console.log(product)
+        const exisist = orderItem.find(item => item.key === product.key)
+        let newCart = []
+        if(exisist){
+            const rest = orderItem.filter(item => item.key !== product.key)
+            exisist.quantity = exisist.quantity + 1;
+            newCart = [...rest, product]
+        }else{
+            product.quantity = 1
+            newCart = [...orderItem, product];
+        }
+
+        // const newCart = [...orderItem, product]
+        setOrderItem(newCart)
+        // save to localStorage (for now)
+        addToDb(product.key)
+        // console.log("done ")
+
+    };
 
     return (
         <div className="shop-container">

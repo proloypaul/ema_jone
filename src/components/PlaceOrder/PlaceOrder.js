@@ -5,7 +5,7 @@ import './PlaceOrder.css';
 const PlaceOrder = () => {
     return (
         <div class="order-Success">
-            <h1>Wow! Congratualtions Your Product Order have Successed</h1>
+            <h1>Wow! Congratualtions Your Product Order has successful</h1>
             <img src={img} alt="Empty"/>
         </div>
     );
