@@ -20,12 +20,13 @@
 .header nav a:hover{
     background: lightgray;
 }
-.header nav .searchBox{
+.searchBox{
     display: flex;
     justify-content: center;
     padding: 20px;
+    background-color: rgba(0, 0, 0, 0.864);
 }
-.header nav .searchBox input{
+.searchBox input{
     width: 80%;
 }
 

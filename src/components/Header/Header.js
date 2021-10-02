@@ -15,9 +15,9 @@ const Header = () => {
                     <NavLink to="/order">Order Review</NavLink>
                     <NavLink to="/inventory">Manage Inventory</NavLink>
                 </div>
-                <div className="searchBox">
+                {/* <div className="searchBox">
                     <input type="text"/>
-                </div>
+                </div> */}
                 
             </nav>
         </div>

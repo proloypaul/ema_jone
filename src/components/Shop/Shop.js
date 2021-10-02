@@ -13,7 +13,10 @@ const Shop = () => {
         const url = `../products.JSON`
         fetch(url)
             .then(res => res.json())
-            .then(data => setProducts(data))
+            .then(data =>{
+                setProducts(data)
+                setDispalySearchResult(data)
+            })
     },[]);
 
     const [orderItem, setOrderItem] = useState([])
@@ -67,31 +70,48 @@ const Shop = () => {
 
     };
 
-    return (
-        <div className="shop-container">
-            <div className="products">
-                {
-                    products.map(product => <Product 
-                        product={product}
-                        key={product.key}
-                        handleOrderItem={handleOrderItem}
-                        ></Product>)
-                }
-            </div>
-            <div className="cart">
-                {/* {orderItem.map(order => <Cart orders={order} cart={orderItem}></Cart>)} */}
-                <Cart cart={orderItem}>
-                    <Link to="/order" >
-                        <button className="addToCartBtn">Review Your Order</button>
-                    </Link>
-                </Cart>
-                {/* <h2>Total Item: {products.length}</h2>
-                <h3>Your Order Item: {orderItem.length}</h3>
-                <h3>Cart</h3>
-                <h3>Price: </h3> */}
-            </div>
-        </div>
+    const [displaySearchResult, setDispalySearchResult ] = useState([])
+    const handleSearch = event => {
+        // console.log(event.target.value)
+        const searchValue = event.target.value;
+        const equalSearchName = products.filter(product => product.name.toLowerCase().includes(searchValue.toLowerCase()))
+        setDispalySearchResult(equalSearchName)
+        // console.log(equalSearchName.length)
 
+    };
+
+    return (
+        <div>
+            <div>
+                <div className="searchBox">
+                    <input onChange={handleSearch} type="text" placeholder="Search your Product"/>
+                </div>
+            </div>
+            <div className="shop-container">
+                <div className="products">
+                    {
+                        displaySearchResult.map(product => <Product 
+                            product={product}
+                            key={product.key}
+                            handleOrderItem={handleOrderItem}
+                            ></Product>)
+                    }
+                </div>
+                <div className="cart">
+                    {/* {orderItem.map(order => <Cart orders={order} cart={orderItem}></Cart>)} */}
+                    <Cart cart={orderItem}>
+                        <Link to="/order" >
+                            <button className="addToCartBtn">Review Your Order</button>
+                        </Link>
+                    </Cart>
+                    {/* <h2>Total Item: {products.length}</h2>
+                    <h3>Your Order Item: {orderItem.length}</h3>
+                    <h3>Cart</h3>
+                    <h3>Price: </h3> */}
+                </div>
+            </div>
+
+        </div>
     );
 };
 
