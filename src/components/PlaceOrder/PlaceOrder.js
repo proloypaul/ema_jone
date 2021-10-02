@@ -1,0 +1,14 @@
+import React from 'react';
+import img from '../../images/giphy.gif';
+import './PlaceOrder.css';
+
+const PlaceOrder = () => {
+    return (
+        <div class="order-Success">
+            <h1>Wow! Congratualtions Your Product Order have Successed</h1>
+            <img src={img} alt="Empty"/>
+        </div>
+    );
+};
+
+export default PlaceOrder;
