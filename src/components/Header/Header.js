@@ -15,6 +15,9 @@ const Header = () => {
                     <NavLink to="/order">Order Review</NavLink>
                     <NavLink to="/inventory">Manage Inventory</NavLink>
                 </div>
+                <div>
+                    <NavLink to="/login" className="signUpBtn">Sign Up</NavLink>
+                </div>
                 {/* <div className="searchBox">
                     <input type="text"/>
                 </div> */}
