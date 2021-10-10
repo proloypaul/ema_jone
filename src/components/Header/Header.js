@@ -1,9 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import useFirebase from '../../Hooks/useFirebase';
 import logo from '../../images/logo.png';
 import './Header.css';
 
 const Header = () => {
+    const {user, signOutProcess} = useFirebase()
     return (
         <div className="header">
             <div className="logo">
@@ -16,7 +18,7 @@ const Header = () => {
                     <NavLink to="/inventory">Manage Inventory</NavLink>
                 </div>
                 <div>
-                    <NavLink to="/login" className="signUpBtn">Sign Up</NavLink>
+                    {user?.email ?<NavLink to="/register" onClick={signOutProcess} className="signUpBtn">Sign Out</NavLink>:<NavLink to="/login" className="signUpBtn">Sign in</NavLink>}
                 </div>
                 {/* <div className="searchBox">
                     <input type="text"/>

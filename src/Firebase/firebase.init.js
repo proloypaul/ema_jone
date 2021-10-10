@@ -22,4 +22,12 @@ create Login component
 create Register component
 create Route for Login and Register component
 
+step-3
+1.set up sign in method
+2.set up sign out method
+3.use state
+4.signOut and signIn state change / special observer
+5.return necessary methods and state from usefirebase
+
+
 */
