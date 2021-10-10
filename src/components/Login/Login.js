@@ -1,10 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../Context/useAuth';
 import './Login.css';
 
 const Login = () => {
     const {signInUsingGoogle} = useAuth()
+    const location = useLocation()
+    const history = useHistory()
+    const redirect_uri = location.state?.from || "/shop"
+    // console.log("came from", location.state?.from)
+    const handleGoogleLogin = () => {
+        signInUsingGoogle()
+            .then(result => {
+                history.push(redirect_uri)
+            })
+    }
     return (
         <div  className="form-container">
             <div>
@@ -30,7 +40,7 @@ const Login = () => {
                     <p>-----------------------Or---------------------------</p>
                 </div>
                 <div>
-                    <button onClick={signInUsingGoogle}>Sign In With Google</button>
+                    <button onClick={handleGoogleLogin}>Sign In With Google</button>
                     {/* <button>Sign In With GitHub</button>
                     <button>Sign In With FaceBook</button> */}
                 </div>
