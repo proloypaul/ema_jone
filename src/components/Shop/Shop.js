@@ -1,6 +1,7 @@
 import { faFireExtinguisher } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useCart from '../../Hooks/UseCart/useCart';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
@@ -9,15 +10,22 @@ import './Shop.css';
 const Shop = () => {
 
     const [products, setProducts] = useState([])
+    const [cart, setCart] = useCart()
+    const [pagecount, setPagecount] = useState(0)
+    const [page, setPage] = useState(0)
+    const size = 10;
     useEffect(() => {
-        const url = `../products.json`
+        const url = `http://localhost:5000/products?page=${page}&&size=${size}`
         fetch(url)
             .then(res => res.json())
             .then(data =>{
-                setProducts(data)
-                setDispalySearchResult(data)
+                setProducts(data.products)
+                setDispalySearchResult(data.products)
+                const count = data.count;
+                const pageNumber = Math.ceil(count/size)
+                setPagecount(pageNumber)
             })
-    },[]);
+    },[page]);
 
     const [orderItem, setOrderItem] = useState([])
 
@@ -96,6 +104,17 @@ const Shop = () => {
                             handleOrderItem={handleOrderItem}
                             ></Product>)
                     }
+                    <div className="pagination">
+                        {
+                            [...Array(pagecount).keys()]
+                            .map(number => <button
+                            className={number === page ? 'selected': ''}
+                            key={number}
+                            onClick={() => setPage(number)}
+                            >{number}</button>)
+                        }
+
+                    </div>
                 </div>
                 <div className="cart">
                     {/* {orderItem.map(order => <Cart orders={order} cart={orderItem}></Cart>)} */}

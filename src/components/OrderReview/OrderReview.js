@@ -1,15 +1,15 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import useCart from '../../Hooks/UseCart/useCart';
 import useProducts from '../../Hooks/UseProducts/UseProducts';
-import { clearTheCart, removeFromDb } from '../../utilities/fakedb';
+import { removeFromDb } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import ReviewItem from '../ReviewItem/ReviewItem';
 
 const OrderReview = () => {
     const [products] = useProducts()
     const [cart, setCart] = useCart(products)
-    const history = useHistory()
+    
     const handleRemove = key => {
         // console.log(key)
         const afterRemove = cart.filter(product => product.key !== key)
@@ -17,12 +17,15 @@ const OrderReview = () => {
         removeFromDb(key)
     }
 
-    const handlePlaceOrder = () => {
-        // console.log("okay")
-        history.push("/placeOrder")
-        setCart([])
-        clearTheCart()
-    }
+    
+    // placeOreder button function
+    // const history = useHistory()
+    // const handlePlaceOrder = () => {
+    //     // console.log("okay")
+    //     history.push("/placeOrder")
+    //     setCart([])
+    //     clearTheCart()
+    // }
     return (
         <div>
             <div className="shop-container">
@@ -38,7 +41,8 @@ const OrderReview = () => {
                 <div className="cart">
                     <h2>available Products: {products.length}</h2>
                     <Cart cart={cart}>
-                        <button onClick={handlePlaceOrder} className="addToCartBtn">Place Order</button>
+                        {/* <button onClick={handlePlaceOrder} className="addToCartBtn">Place Order</button> */}
+                        <Link to="/orderform"><button className="addToCartBtn">Get Products</button></Link>
                     </Cart>
                 </div>
             </div>
