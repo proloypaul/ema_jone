@@ -16,6 +16,7 @@ const Header = () => {
                     <NavLink to="/shop">Shop</NavLink>
                     <NavLink to="/order">Order Review</NavLink>
                     <NavLink to="/inventory">Manage Inventory</NavLink>
+                    <NavLink to="/myorders">MyOrders</NavLink>
                 </div>
                 <div>
                     {user?.email ?<NavLink to="/register" onClick={signOutProcess} className="signUpBtn">Sign Out</NavLink>:<NavLink to="/login" className="signUpBtn">Sign in</NavLink>}

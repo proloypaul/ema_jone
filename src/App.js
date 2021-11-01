@@ -12,6 +12,7 @@ import Register from './components/Register/Register';
 import AuthProvider from './Context/AuthProvider';
 import PrivateRoute from './PricateRoute/PrivateRoute';
 import OrderForm from './components/OrderForm/OrderForm';
+import MyOrders from './components/MyOrders/MyOrders';
 
 function App() {
   return (
@@ -27,9 +28,9 @@ function App() {
               <Route path="/shop">
                 <Shop></Shop>
               </Route>
-              <Route path="/order">
+              <PrivateRoute path="/order">
                 <OrderReview></OrderReview>
-              </Route>
+              </PrivateRoute>
               <Route path="/inventory">
                 <Inventory></Inventory>
               </Route>
@@ -44,6 +45,9 @@ function App() {
               </Route>
               <Route path="/orderform">
                 <OrderForm></OrderForm>
+              </Route>
+              <Route path="/myorders">
+                <MyOrders></MyOrders>
               </Route>
               <Route path="*">
                 <NotFind></NotFind>
